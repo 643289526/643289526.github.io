@@ -2,18 +2,20 @@
   font-size: 36px;
   font-weight: 100;
   color: #eee;
+  display: flex;
 }
 .wordCarousel div {
   overflow: hidden;
   position: relative;
   float: right;
+  margin:auto;
   height: 65px;
   padding-top: 10px;
   margin-top: -10px;
 }
 .wordCarousel div li {
   font-family: Serif;
-  color: pink;
+  color: #a6c3e0;
   font-weight: 700;
   padding: 0 10px;
   height: 45px;
