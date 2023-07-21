@@ -4,6 +4,9 @@
   color: #eee;
   display: flex;
 }
+ul.flip5 li {
+  font-size: 29px;
+}
 .wordCarousel div {
   overflow: hidden;
   position: relative;
