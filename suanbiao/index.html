@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>示例</h2>
+        <label for="input1">时刻表:</label>
+        <select id="input1">
+            <option value="">请选择</option>
+            <option value="L3Z037">L3Z037</option>
+            <option value="L3Z044">L3Z044</option>
+            <option value="L3Z042">L3Z042</option>
+        </select>
+
+        <label for="inputElement">车次:</label>
+        <input type="text" id="inputElement" placeholder="输入元素">
+        <button onclick="checkConditions()">查找</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkConditions() {
+            // 获取输入框的值，并去掉两端的空格
+            var input1 = document.getElementById("input1").value.trim();
+
+            // 条件 1：输入框 1 必须是 'L3Z037'
+            var condition1 = (input1 === 'L3Z037');
+
+            // 两个条件都满足时输出结果
+            if (condition1) {
+                findElement(); // 调用 findElement 函数
+            } else {
+                document.getElementById("result").innerHTML = "条件不满足，请检查输入值。";
+            }
+        }
+
+        function findElement() {
+            const referenceArray = ['2313', '香蕉', '橙子', '葡萄', '草莓'];
+            const correspondingArray = [
+                '2313到林场数七个接1312<br>1312到魔咒数三个接2213<br>2213到林场数五个接2318<br>2318到秣周数两个接2519<br>2519回库到达车次为2520',
+                '黄色',
+                '橙色',
+                '紫色',
+                '红色'
+            ];
+
+            const input = document.getElementById('inputElement').value.trim();
+            const index = referenceArray.indexOf(input);
+            const result = index !== -1 ? correspondingArray[index] : '未找到';
+
+            document.getElementById('result').innerHTML = `对应元素:<br>${result}`;
+        }
+    </script>
+</body>
+
+</html>
 
