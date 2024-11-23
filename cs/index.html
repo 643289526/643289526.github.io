@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通过输入属性获取对象属性示例</title>
+    <script>
+        // 示例数据：两个数组，分别存储不同对象
+        const array1 = [
+            { id: 1, name: "苹果", color: "红色" },
+            { id: 2, name: "香蕉", color: "黄色" },
+            { id: 3, name: "橙子", color: "橙色" },
+            { id: 4, name: "葡萄", color: "紫色" },
+            { id: 5, name: "草莓", color: "红色" }
+        ];
+
+        const array2 = [
+            { code: "A01", price: 5 },
+            { code: "B02", price: 3 },
+            { code: "C03", price: 4 },
+            { code: "D04", price: 6 },
+            { code: "E05", price: 7 }
+        ];
+
+        // 查找对象在数组1中的序号，通过序号获取数组2中的对象属性
+        function findAndRetrieve() {
+            // 获取用户输入的属性（例如水果的名字）
+            let input = document.getElementById("inputValue").value.trim();
+            let foundIndex = -1;
+
+            // 在 array1 中查找对象，找到对应的序号
+            for (let i = 0; i < array1.length; i++) {
+                if (array1[i].name === input) {
+                    foundIndex = i;
+                    break;
+                }
+            }
+
+            // 如果找到对应的对象
+            if (foundIndex !== -1) {
+                // 获取用户输入的偏移值
+                let offset = parseInt(document.getElementById("indexOffset").value.trim());
+                let targetIndex = foundIndex + offset;
+
+                // 检查目标序号是否在 array2 的范围内
+                if (targetIndex >= 0 && targetIndex < array2.length) {
+                    // 显示 array2 中对应对象的属性
+                    document.getElementById("output").textContent = `在 array2 中找到的对象属性：Code - ${array2[targetIndex].code}, Price - ${array2[targetIndex].price}`;
+                } else {
+                    document.getElementById("output").textContent = "目标序号超出范围！";
+                }
+            } else {
+                document.getElementById("output").textContent = "未找到匹配的对象！";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>查找对象并获取属性示例</h1>
+
+    <form>
+        <label for="inputValue">输入水果名称:</label>
+        <input type="text" id="inputValue" placeholder="输入水果名称，如苹果"><br><br>
+
+        <label for="indexOffset">输入偏移值:</label>
+        <input type="number" id="indexOffset" placeholder="输入偏移值，如 1 或 -1"><br><br>
+
+        <button type="button" onclick="findAndRetrieve()">查找并获取属性</button>
+    </form>
+
+    <h2>结果:</h2>
+    <p id="output"></p>
+</body>
+</html>
